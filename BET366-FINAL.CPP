@@ -772,7 +772,7 @@ int final::calculate(Team t1, Team t2){
 	x/=100;
 	y=t2.w*t1.l;
 	y/=100;
-	z=t1.d+t2.d;
+	z=t1.d*t2.d;
 	z/=100;
 	t=100-(x+y+z);
 	s=x+y+z;
@@ -786,53 +786,14 @@ int final::calculate(Team t1, Team t2){
 	q=y+b;
 	r=z+c;
 	p=(int)p;       //Win
-	q=(int)q;       //Draw
-	r=(int)r;       //Lose (Mostly United)
+	q=(int)q;       //Lose (Mostly United)
+	r=(int)r;       //Draw
 	fw=p;
 	fd=q;
 	fl=r;
 	//cout<<"\n\n\n"<<p<<"   "<<q<<"   "<<r;
 	q+=p;
 	r+=q;
-	/*struct Node{
-		int num;
-		char info;
-		Node *next;
-	}*start, *newptr, *save, *ptr;
-
-	//Node *create(int);
-	void insert(Node*);
-
-	Node *create(char n, int v){
-		ptr=new Node;
-		ptr->info=n;
-		ptr->num=v;
-		ptr->next=NULL;
-		return ptr;
-	}
-
-	void insert(Node *np){
-		if(start==NULL){
-			start=np;
-		}
-		else{
-			save=start;
-			start=np;
-			np=np->next;
-		}
-	}
-	for(int i=0;i<p;i++){
-		newptr=create('w', (i+1));
-		insert(newptr);
-	}
-	for(;i<p+q;i++){
-		newptr=create('d', (i+1));
-		insert(newptr);
-	}
-	for(;i<p+q+r;i++){
-		newptr=create('l', (i+1));
-		insert(newptr);
-	}       */
 
 	int res=0;
 	int i=1;
@@ -847,10 +808,10 @@ int final::calculate(Team t1, Team t2){
 		return i;             //Win
 	}
 	else if(res<=q){
-		return d;	      //Draw
+		return w;	      //Draw
 	}
 	else{
-		return w;	      //Lose
+		return d;	      //Lose
 	}
 	return 0;
 }
